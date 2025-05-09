@@ -2345,7 +2345,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
 
                 if not isfile(outpath_ifs_sof + "PSF{}{:.0f}.sof".format(lab_distort, ii)) or overwrite_sof:
                     with open(outpath_ifs_sof + "PSF{}{:.0f}.sof".format(lab_distort, ii), 'w') as f:
-                        f.write(inpath + skysub_lab_IFS + lab_bp + psf_list_ifs[ii] + '\t' + 'IFS_SCIENCE_DR_RAW\n')
+                        f.write(inpath + lab_sci + lab_bp + psf_list_ifs[ii] + '\t' + 'IFS_SCIENCE_DR_RAW\n')
                         for jj in range(1, 6):
                             if not large_scale_flat or (jj == 5 and large_scale_flat == 'some'):
                                 lab_sof = "{}master_flat_det_l{:.0f}.fits".format(
