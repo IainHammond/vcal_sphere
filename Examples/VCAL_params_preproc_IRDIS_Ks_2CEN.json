@@ -13,7 +13,7 @@
     "diam": 8.1,
     "plsc": [0.012265,0.012265],
     "idx_test_cube": 0,
-    "cen_box_sz": [31,71,15],
+    "cen_box_sz": [31,31,15],
     "true_ncen": 2,
     "snr_thr_bkg":5,
     "template_strehl": ["science_dbi_{}{:.0f}","psf_dbi_{}{:.0f}"],
