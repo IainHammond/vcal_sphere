@@ -172,7 +172,7 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
                         center_list_ifs.append(fname)
                         center_list_mjd_ifs.append(header['MJD-OBS'])
                         ifs_mode = _check_mode(ifs_mode)
-                    elif header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
+                    elif header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND':
                         ins_bg_list_ifs.append(fname)
                     elif header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'DARK':
                         dark_list_ifs.append(fname)
@@ -218,7 +218,7 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
                     elif header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'OBJECT,CENTRE':
                         center_list_irdis.append(fname)
                         center_list_mjd_irdis.append(header['MJD-OBS'])
-                    elif header['HIERARCH ESO DET SEQ1 DIT'] == dit_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and 'DARK,BACKGROUND' in header['HIERARCH ESO DPR TYPE'] and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
+                    elif header['HIERARCH ESO DET SEQ1 DIT'] == dit_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and 'DARK,BACKGROUND' in header['HIERARCH ESO DPR TYPE']:
                         ins_bg_list_irdis.append(fname)
                     elif header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'DARK':
                         dark_list_irdis.append(fname)
@@ -253,7 +253,7 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
                         psf_list_mjd_irdis.append(header['MJD-OBS'])
                     elif header['HIERARCH ESO DET SEQ1 DIT'] == dit_psf_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'SKY' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
                         psf_sky_list_irdis.append(fname)
-                    elif header['HIERARCH ESO DET SEQ1 DIT'] == dit_psf_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
+                    elif header['HIERARCH ESO DET SEQ1 DIT'] == dit_psf_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND':
                         psf_ins_bg_list_irdis.append(fname)
 
                 if dit_cen_ifs is not None:
@@ -262,7 +262,7 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
                         cen_list_mjd_ifs.append(header['MJD-OBS'])
                     elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_ifs and header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'SKY' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
                         cen_sky_list_ifs.append(fname)
-                    elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_ifs and header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
+                    elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_ifs and header['HIERARCH ESO DET NAME'] == 'IFS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND':
                         cen_ins_bg_list_ifs.append(fname)
 
                 if dit_cen_irdis is not None:
@@ -271,7 +271,7 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
                         cen_list_mjd_irdis.append(header['MJD-OBS'])
                     elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'SKY' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
                         cen_sky_list_irdis.append(fname)
-                    elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND' and header['HIERARCH ESO INS1 FILT NAME'] == filt1 and header['HIERARCH ESO INS1 OPTI2 NAME'] == filt2:
+                    elif header['HIERARCH ESO DET SEQ1 DIT'] in dit_cen_irdis and header['HIERARCH ESO DET NAME'] == 'IRDIS' and header['HIERARCH ESO DPR TYPE'] == 'DARK,BACKGROUND':
                         cen_ins_bg_list_irdis.append(fname)
 
             elif fname.startswith('M.'+instr) and fname.endswith('.fits'):
