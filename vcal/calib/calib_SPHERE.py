@@ -1041,11 +1041,11 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                 if file.endswith(".fits"):
                     file = file[:-5]
 
-                command = f"{com_esorex} sph_ird_science_{recipe}"
-                command += f" --ird.science_{recipe}.outfilename={outpath_irdis_fits}{file}_total.fits"
-                command += f" --ird.science_{recipe}.outfilename_left={outpath_irdis_fits}{file}_left.fits"
-                command += f" --ird.science_{recipe}.outfilename_right={outpath_irdis_fits}{file}_right.fits"
-                command += f" --ird.science_{recipe}.save_addprod=TRUE"
+                command = f"{com_esorex} sph_ird_science_dbi"
+                command += f" --ird.science_dbi.outfilename={outpath_irdis_fits}{file}_total.fits"
+                command += f" --ird.science_dbi.outfilename_left={outpath_irdis_fits}{file}_left.fits"
+                command += f" --ird.science_dbi.outfilename_right={outpath_irdis_fits}{file}_right.fits"
+                command += f" --ird.science_dbi.save_addprod=TRUE"
                 command += f" {outpath_irdis_sof}{file_type}{ii}.sof"
                 os.system(command)
 
