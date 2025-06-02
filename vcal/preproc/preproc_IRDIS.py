@@ -1017,14 +1017,10 @@ def preproc_IRDIS(params_preproc_name='VCAL_params_preproc_IRDIS.json',
                                         header['MJD-OBS'])+(nfr_tmp*dits[fi]/2.)/(3600*24)
                                     mjd_fin = mjd
                                     if true_ncen is None:
-                                        unique_mjd_cen = mjd_cen.copy()
-                                        y_shifts_cen = y_shifts_cen_med
-                                        x_shifts_cen = x_shifts_cen_med
-                                        y_shifts_cen_err = y_shifts_cen_std
-                                        x_shifts_cen_err = x_shifts_cen_std
                                         true_ncen = ncen
-                                    elif true_ncen > 4:
+                                    if true_ncen == 1 or true_ncen > 4:
                                         unique_mjd_cen = mjd_cen.copy()
+                                        unique_pa_cen = np.array([np.median(pa_cen)])
                                         y_shifts_cen = y_shifts_cen_med
                                         x_shifts_cen = x_shifts_cen_med
                                         y_shifts_cen_err = y_shifts_cen_std
@@ -1047,7 +1043,7 @@ def preproc_IRDIS(params_preproc_name='VCAL_params_preproc_IRDIS.json',
                                         x_shifts_cen_err = np.zeros(true_ncen)
                                         for cc in range(true_ncen):
                                             if cc == 0:
-                                                cond = mjd_cen < mjd
+                                                cond = mjd_cen < mjd. # CEN taken before the OBJ
                                             elif cc == true_ncen-1:
                                                 cond = mjd_cen > mjd_fin  # if a science cube is taken after the last center file, this will give False for cond
                                             elif cc == 1 and true_ncen == 3:
