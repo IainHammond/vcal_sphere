@@ -1043,7 +1043,7 @@ def preproc_IRDIS(params_preproc_name='VCAL_params_preproc_IRDIS.json',
                                         x_shifts_cen_err = np.zeros(true_ncen)
                                         for cc in range(true_ncen):
                                             if cc == 0:
-                                                cond = mjd_cen < mjd. # CEN taken before the OBJ
+                                                cond = mjd_cen < mjd  # CEN taken before the OBJ
                                             elif cc == true_ncen-1:
                                                 cond = mjd_cen > mjd_fin  # if a science cube is taken after the last center file, this will give False for cond
                                             elif cc == 1 and true_ncen == 3:
