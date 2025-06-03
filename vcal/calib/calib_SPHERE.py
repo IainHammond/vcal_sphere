@@ -1315,7 +1315,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     nd_fr = dark_cube.shape[0]
                     counter = 0
                     nmd_fr = int(nd_fr * nfd)
-                    master_dark_cube = np.zeros([nmd_fr, dark_cube.shape[1], dark_cube.shape[2]])
+                    master_dark_cube = np.zeros([nmd_fr, dark_cube.shape[-2], dark_cube.shape[-1]])
                     fdit_list_nn.append((nn, fdit))
 
                     # CREATE master DARK for each DIT of raw FLAT
