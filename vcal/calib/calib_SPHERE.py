@@ -1326,7 +1326,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             dark_cube, fdark_head = open_fits(inpath + fdark_list_ifs[dd], header=True, verbose=False)
                             dit_fdark = fdark_head['HIERARCH ESO DET SEQ1 DIT']
                             if dit_fdark == fdit:
-                                if np.round(dit_fdark, decimals=2) == 1.65 and fdark_head["MJD-OBS"] < 0:
+                                if np.round(dit_fdark, decimals=2) == 1.65 and fdark_head["MJD-OBS"] < 58933: # 58933 is the date after the shutdown
                                     fdark_list_ifs[dd] = "ifs_super_dark_1.65s.fits"
                                     os.system("cp {} {}".format(vcal_path[0][:-4] + "Static/ifs_super_dark_1.65s.fits",
                                                                 inpath))
