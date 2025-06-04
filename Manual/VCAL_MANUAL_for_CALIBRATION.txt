@@ -1,4 +1,5 @@
 This file describes the structure of the pipeline, and describes the parameters that can be set in the json file.
+The official calibration cascade is available here: https://www.eso.org/observing/dfo/quality/ALL/OCA/CALSELECTOR/SPHERE/2015-03-27/cascade_SPHERE_ALL.html
 
 ************************ CALIBRATION outline ***************************
 
