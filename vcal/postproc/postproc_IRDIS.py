@@ -108,11 +108,6 @@ def postproc_IRDIS(params_postproc_name='VCAL_params_postproc_IRDIS.json',
     # from preproc
     coro = params_preproc['coro']
     bin_fac = params_preproc.get('bin_fac',1)
-    distort_corr = params_preproc['distort_corr']
-    if distort_corr:
-        distort_corr_labs = ["_DistCorr"]
-    else:
-        distort_corr_labs = [""]
     final_crop_sz = params_preproc.get('final_crop_sz', 101)
     final_cubename = params_preproc.get('final_cubename', 'final_cube')
     final_anglename = params_preproc.get('final_anglename', 'final_derot_angles')
@@ -203,7 +198,6 @@ def postproc_IRDIS(params_postproc_name='VCAL_params_postproc_IRDIS.json',
     scaling = params_postproc.get('scaling',None) # for RDI
     mask_PCA = params_postproc.get('mask_PCA',None)
     ##DBI
-    scale_list = params_postproc.get('scale_list',None)
     adimsdi = params_postproc.get('adimsdi',"double")
     ## it. PCA?
     n_it = params_postproc.get('n_it',0)
