@@ -277,7 +277,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
         # DARKS
         if 1 in to_do:
             if verbose:
-                print("*** 1. IRDIS: Collating darks (not used if SKY observations were made) ***", flush=True)
+                print("*** 1. IRDIS: Collating darks ***", flush=True)
             # OBJECT
             if not isfile(outpath_irdis_sof + "master_dark.sof") or overwrite_sof:
                 dark_list_irdis = dico_lists['dark_list_irdis']
