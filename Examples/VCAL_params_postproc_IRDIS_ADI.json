@@ -12,7 +12,6 @@
     "fcp_pos_r_full": [0.3,0.6,0.9],
     "high_pass_filter_list": [0],
     "mask_IWA":8,
-    "prep_ref_cube":[2,3],
     "strategy":"ADI",
     "mask_PCA":0.7,
     "do_conv":0,
@@ -31,6 +30,6 @@
     "verbose":1,
     "nproc":1,
     "overwrite_ADI":0,
-    "overwrite_pp":0,
-    "debug":1
+    "overwrite_pp":1,
+    "debug":0
 }

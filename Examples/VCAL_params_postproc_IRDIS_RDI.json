@@ -32,6 +32,6 @@
     "verbose":1,
     "nproc":1,
     "overwrite_ADI":1,
-    "overwrite_pp":0,
-    "debug":1
+    "overwrite_pp":1,
+    "debug":0
 }
