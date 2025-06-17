@@ -704,7 +704,11 @@ def make_lists(inpath, outpath_filenames, dit_ifs=None, dit_irdis=None,
 
     # perform a check of how many calibration files were picked up for IFS
     if dit_ifs is not None:
-        first_sci_mjd = sci_list_mjd_ifs[0]
+        if len(sci_list_mjd_ifs) == 0:
+            print("WARNING: No science files found for IFS. Assuming CEN are used as science.", flush=True)
+            first_sci_mjd = cen_list_mjd_ifs[0]
+        else:
+            first_sci_mjd = sci_list_mjd_ifs[0]
         if len(flat_list_ifs_det_BB) > 2:
             print("WARNING: More than two broadband flats detected for IFS. Keeping the two closest to the science observations.", flush=True)
             flat_list_ifs_det_BB_mjd = [float(open_header(inpath+fname)['MJD-OBS']) for fname in flat_list_ifs_det_BB]
