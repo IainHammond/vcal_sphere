@@ -334,7 +334,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
             mask_PCA = int(mask_PCA/np.median(plsc))
     else:
         label_stg = "ADI"
-        ref_cube = [None] * nz
+        ref_cube = None
 
     if subtract_planet:
         PCA_ASDI_cube_ori = cube_planet_free(planet_parameter, PCA_ASDI_cube_ori, derot_angles, psfn, imlib=imlib)
@@ -611,6 +611,8 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                         tmp[pp] = mask_circle(tmp[pp],rad_in*fwhm_med)
                     write_fits(outpath+'final_PCA-SDI_snrmap_{}_at_{}as'.format(test_pcs_str,test_rad_str)+label_test+'.fits', tmp, verbose=False)
 
+        if ref_cube_name is None or ref_cube_name != "":
+            ref_cube = [None] * nz  # needs to be a list of None for each channel if no RDI is done
 
         ####################### 5. PCA-ADI full ###########################
         if do_adi_full:
