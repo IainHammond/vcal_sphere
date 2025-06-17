@@ -31,13 +31,13 @@ C. Install vcal_sphere (see also README file):
 	then simply call dfits_irdifs whenever needed in a given directory.
 
 	3b) If you've installed dfitspy, open an ipython session in your 'raw' directory and run:
-		import dfitspy
-		listfiles = dfitspy.get_files(['all'])
-		listkeys = ['HIERARCH ESO DET ID', 'HIERARCH ESO DET SEQ1 DIT', 'HIERARCH ESO INS1 FILT NAME', 'HIERARCH ESO INS1 OPTI2 NAME','HIERARCH ESO DPR TYPE' ,'HIERARCH ESO INS4 COMB ROT', 'HIERARCH ESO INS COMB IFLT']
-		fitsort = dfitspy.dfitsort(listfiles, listkeys)
-		dfitspy.dfitsort_view(fitsort)
+        import dfitspy
+        listfiles = dfitspy.get_files(['all'])
+        listkeys = listkeys = ['INS1 OPTI1 NAME','OBJECT','ESO DET ID','INS4 OPTI3 NAME','INS4 FILT2 NAME','INS COMB ICOR','INS1 FILT NAME','INS1 OPTI2 NAME','DET SEQ1 DIT','ESO DPR CATG','ESO DPR TYPE', 'INS4 COMB ROT','HIERARCH ESO INS2 COMB IFS']
+        fitsort = dfitspy.dfitsort(sorted(listfiles),listkeys)
+        dfitspy.dfitsort_view(fitsort)
 
-4) If you plan to reduce IFS data, double-check the following calibration files are downloaded (it appears they are not systematically downloaded when ticking "download associated calibration files"):
+4) If you plan to reduce IFS data, double-check the following calibration files are downloaded.
 - 'SPECPOS,LAMP'
 - 'WAVE,LAMP'
 If not present, you will need to download them separately from the ESO archive. Consider the calibration files that were obtained closest in time from the observations, in the same mode (INS2 COMB IFS header keyword) as the observations.
