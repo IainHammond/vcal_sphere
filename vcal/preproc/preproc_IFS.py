@@ -1024,6 +1024,7 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                 fwhm_med = np.median(fwhm)
 
                 cube = open_fits(outpath+f"1_master_ASDIcube{labels[fi]}.fits", verbose=debug)
+                nfr = cube.shape[1]
 
                 if fi != 1:
                     badfr_critn_tmp = badfr_criteria
@@ -1197,17 +1198,8 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                         derot_angles = derot_angles[final_good_index_list]
                         write_fits(outpath+f"2_master_derot_angles_clean_{bad_str}.fits", derot_angles, verbose=debug)
 
-            for fi, file_list in enumerate(obj_psf_list):
-                if fi > 1 and not use_cen_only:
-                    break
-                elif fi != 1:
-                    badfr_crit = badfr_criteria
-                else:
-                    badfr_crit = badfr_criteria_psf
-                bad_str = "-".join(badfr_crit)
-                cube_ori = open_fits(outpath+f"1_master_ASDIcube{labels[fi]}.fits", verbose=debug)
-                cube = open_fits(outpath+f"2_master{labels[fi]}_ASDIcube_clean_{bad_str}.fits", verbose=debug)
-                frac_good = cube.shape[1]/cube_ori.shape[1]
+                # print final percentage of frames kept
+                frac_good = len(final_good_index_list)/nfr
                 print("In total we keep {:.1f}% of all frames of the {} cube \n".format(100*frac_good, labels[fi]), flush=True)
 
             if save_space:
