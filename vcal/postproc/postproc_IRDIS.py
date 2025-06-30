@@ -359,7 +359,6 @@ def postproc_IRDIS(params_postproc_name='VCAL_params_postproc_IRDIS.json',
                 derot_angles = open_fits(outpath_2+final_anglename+"{}.fits".format(filters[-1]))
 
                 if do_pca_full:
-                    #PCA_ADI_cube, derot_angles = vip.fits.open_adicube(outpath_5.format(bin_fac,filt,crop_lab_list[cc])+'7_final_crop_PCA_cube'+label_filt+'.fits')
                     # First let's readapt the number of pcs to be tested
                     test_pcs_full = test_pcs_full_all[cc]
 
