@@ -1312,7 +1312,10 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                           flush=True)
                 for nn, fdit in enumerate(dit_ifs_flat_list):
                     dark_cube = open_fits(inpath + fdark_list_ifs[0], verbose=False)  # first open an example dark
-                    nd_fr = dark_cube.shape[0]
+                    if dark_cube.ndim == 2:
+                        nd_fr = 1
+                    else:
+                        nd_fr = dark_cube.shape[0]
                     counter = 0
                     nmd_fr = int(nd_fr * nfd)
                     master_dark_cube = np.zeros([nmd_fr, dark_cube.shape[-2], dark_cube.shape[-1]])
@@ -1331,8 +1334,12 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                                 #     os.system("cp {} {}".format(vcal_path[0][:-4] + "Static/ifs_super_dark_1.65s.fits",
                                 #                                 inpath))
                                 f.write(inpath + fdark_list_ifs[dd] + '\t' + 'IFS_DARK_RAW\n')
-                                master_dark_cube[counter:counter + dark_cube.shape[0]] = np.copy(dark_cube)
-                                counter += dark_cube.shape[0]
+                                if dark_cube.ndim == 2:
+                                    nd_fr = 1
+                                else:
+                                    nd_fr = dark_cube.shape[0]
+                                master_dark_cube[counter:counter + nd_fr] = np.copy(dark_cube)
+                                counter += nd_fr
                     write_fits(outpath_ifs_fits + "master_dark_cube{:.0f}.fits".format(nn), master_dark_cube[:counter],
                                verbose=False)
                     if not isfile(
@@ -1364,7 +1371,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                                 hdulist[0].data = flat - master_dark_tmp
                                 hdulist.writeto(inpath + label_ds + ff_name, output_verify='ignore', overwrite=True)
 
-                np.save(outpath_ifs_fits + 'flat_dark_dits.npy', fdit_list_nn)  # used later in spec_pos
+                np.save(outpath_ifs_fits + 'flat_dark_dits.npy', fdit_list_nn)  # fdark DITs, used later in spec_pos
                 # make vmin, vmax and labels with integration time for plot
                 labels = tuple(
                     [s + ' sec' for s in [str(dit_ifs_flat_list) for dit_ifs_flat_list in dit_ifs_flat_list]])
