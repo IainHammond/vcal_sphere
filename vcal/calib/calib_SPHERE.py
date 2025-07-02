@@ -1467,7 +1467,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     f.write("{}master_dark.fits".format(
                         outpath_ifs_fits + label_fd) + '\t' + 'IFS_MASTER_DARK\n')
                 f.write("{}master_badpixelmap.fits".format(
-                    outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP')
+                    outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP\n')
 
             if not isfile(outpath_ifs_fits + "preamp_l5.fits") or overwrite_sof or overwrite_fits:
                 command = "{} sph_ifs_master_detector_flat".format(com_esorex)
@@ -1506,7 +1506,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             f.write("{}master_dark.fits".format(
                                 outpath_ifs_fits + label_fd) + '\t' + 'IFS_MASTER_DARK\n')
                         f.write("{}master_badpixelmap.fits".format(
-                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP')
+                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP\n')
                         f.write("{}preamp_l5.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_PREAMP_FLAT\n')
 
@@ -1547,7 +1547,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             f.write("{}master_dark.fits".format(
                                 outpath_ifs_fits + label_fd) + '\t' + 'IFS_MASTER_DARK\n')
                         f.write("{}master_badpixelmap.fits".format(
-                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP')
+                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP\n')
                         f.write("{}preamp_l5.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_PREAMP_FLAT\n')
 
@@ -1589,7 +1589,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             f.write("{}master_dark.fits".format(
                                 outpath_ifs_fits + label_fd) + '\t' + 'IFS_MASTER_DARK\n')
                         f.write("{}master_badpixelmap.fits".format(
-                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP')
+                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP\n')
                         f.write("{}preamp_l5.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_PREAMP_FLAT\n')
                         if large_scale_flat:
@@ -1626,7 +1626,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             f.write("{}master_dark.fits".format(
                                 outpath_ifs_fits + label_fd) + '\t' + 'IFS_MASTER_DARK\n')
                         f.write("{}master_badpixelmap.fits".format(
-                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP')
+                            outpath_ifs_fits) + '\t' + 'IFS_STATIC_BADPIXELMAP\n')
                         f.write("{}preamp_l5.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_PREAMP_FLAT\n')
                         if large_scale_flat:
