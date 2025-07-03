@@ -1788,8 +1788,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                 hdulist_bp = fits.open("{}master_badpixelmap.fits".format(outpath_ifs_fits),
                                        ignore_missing_end=False,
                                        memmap=True)
-
-                # vip_hci.fits.open_fits("{}master_badpixelmap.fits".format(outpath_ifs_fits))
                 bpmap = hdulist_bp[0].data
 
                 for ii in range(len(wave_calib_list_ifs)):
