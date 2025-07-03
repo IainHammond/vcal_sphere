@@ -1797,13 +1797,15 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     wc_head = hdul[0].header
                     cube = hdul[0].data
                     cube = np.array(cube, dtype=float)
-                    ## MANUAL DARK SUBTRACTION
+                    ## MANUAL DARK SUBTRACTION (can be updated to just provide the eso recipe with the dark and remove code below
                     dit_wc = wc_head['HIERARCH ESO DET SEQ1 DIT']
                     for nn, fdit in enumerate(dit_ifs_flat_list):
-                        ## subtract with PCA
                         master_dark_cube = open_fits(outpath_ifs_fits + f"master_dark_cube{nn}.fits", verbose=False)
                         if fdit == dit_wc:
-                            dark_tmp = np.median(master_dark_cube, axis=0)
+                            if master_dark_cube.ndim == 3:
+                                dark_tmp = np.median(master_dark_cube, axis=0)
+                            elif master_dark_cube.ndim == 2:
+                                dark_tmp = np.copy(master_dark_cube)
                             for j in range(cube.shape[0]):
                                 cube[j] -= dark_tmp
                             break
@@ -1817,15 +1819,16 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     cube = cube_fix_badpix_clump(cube, bpm_mask=bpmap, correct_only=True, cy=None, cx=None, fwhm=3,
                                                  sig=6, protect_mask=0, verbose=False, half_res_y=False,
                                                  full_output=False, nproc=nproc)
+
                     lab_wc = bpcorr_lab_IFS
                     hdul[0].data = cube
                     if not isdir(inpath + lab_wc):
                         os.makedirs(inpath + lab_wc)
                     hdul.writeto(inpath + bpcorr_lab_IFS + '1_' + wave_calib_list_ifs[ii], output_verify='ignore',
                                  overwrite=True)
-                    cube = cube_fix_badpix_clump(cube, bpm_mask=None, cy=None, cx=None, fwhm=3, sig=10, protect_mask=0,
-                                                 verbose=False, half_res_y=False, max_nit=1, full_output=False,
-                                                 nproc=nproc)
+                    # cube = cube_fix_badpix_clump(cube, bpm_mask=None, cy=None, cx=None, fwhm=3, sig=10, protect_mask=0,
+                    #                              verbose=False, half_res_y=False, max_nit=1, full_output=False,
+                    #                              nproc=nproc)
                     lab_wc = bpcorr_lab_IFS
                     hdul[0].data = cube
                     if not isdir(inpath + lab_wc):
