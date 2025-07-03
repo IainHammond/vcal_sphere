@@ -1792,7 +1792,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
 
                 for ii in range(len(wave_calib_list_ifs)):
                     hdul = fits.open(inpath + wave_calib_list_ifs[ii])
-                    wc_head = hdul[0].header
                     cube = hdul[0].data
                     cube = np.array(cube, dtype=float)
                     ## MANUAL DARK SUBTRACTION (can be updated to just provide the eso recipe with the dark and remove code below
