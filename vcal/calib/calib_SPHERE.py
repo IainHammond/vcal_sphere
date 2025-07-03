@@ -1796,17 +1796,9 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     cube = hdul[0].data
                     cube = np.array(cube, dtype=float)
                     ## MANUAL DARK SUBTRACTION (can be updated to just provide the eso recipe with the dark and remove code below
-                    dit_wc = wc_head['HIERARCH ESO DET SEQ1 DIT']
-                    for nn, fdit in enumerate(dit_ifs_flat_list):
-                        master_dark_cube = open_fits(outpath_ifs_fits + f"master_dark_cube{nn}.fits", verbose=False)
-                        if fdit == dit_wc:
-                            if master_dark_cube.ndim == 3:
-                                dark_tmp = np.median(master_dark_cube, axis=0)
-                            elif master_dark_cube.ndim == 2:
-                                dark_tmp = np.copy(master_dark_cube)
-                            for j in range(cube.shape[0]):
-                                cube[j] -= dark_tmp
-                            break
+                    master_dark = open_fits(outpath_ifs_fits + f"master_dark0.fits", verbose=False)  # dark 0 is always 1.65s
+                    for j in range(cube.shape[0]):
+                        cube[j] -= master_dark
                     hdul[0].data = cube
                     lab_wc = skysub_lab_IFS
                     if not isdir(inpath + lab_wc):
