@@ -1781,7 +1781,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
             if verbose:
                 print("*** 15. IFS: Calibrating wavelengths ***", flush=True)
             dit_ifs_flat_list = dico_lists['dit_ifs_flat']
-            nfdits = len(dit_ifs_flat_list)
 
             if not isfile(outpath_ifs_sof + "wave_calib.sof") or overwrite_sof:
                 wave_calib_list_ifs = dico_lists['wave_IFS']  # v2
