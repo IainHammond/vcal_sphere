@@ -1803,9 +1803,9 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     hdul.writeto(inpath + skysub_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
                                  overwrite=True)
 
-                    cube = cube_fix_badpix_clump(cube, bpm_mask=bpmap, correct_only=True, cy=None, cx=None, fwhm=3,
-                                                 sig=6, protect_mask=0, verbose=False, half_res_y=False,
-                                                 full_output=False, nproc=nproc)
+                    # cube = cube_fix_badpix_clump(cube, bpm_mask=bpmap, correct_only=True, cy=None, cx=None, fwhm=3,
+                    #                              sig=6, protect_mask=0, verbose=False, half_res_y=False,
+                    #                              full_output=False, nproc=nproc)
 
                     lab_wc = bpcorr_lab_IFS
                     hdul[0].data = cube
