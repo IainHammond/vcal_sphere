@@ -1439,9 +1439,11 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     hdul = fits.open(inpath + label_ds + flat_list_ifs_det_BB[ii])
                     cube = hdul[0].data
                     # CROSS-TALK CORR
-                    for j in range(cube.shape[0]):
-                        cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill',
-                                                                 fill_value=0)
+                    if cube.ndim == 3:
+                        for j in range(cube.shape[0]):
+                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
+                    elif cube.ndim == 2:
+                        cube = sph_ifs_correct_spectral_xtalk(cube, boundary='fill', fill_value=0)
                     hdul[0].data = cube
                     lab_flat = xtalkcorr_lab_IFS
                     hdul.writeto(inpath + xtalkcorr_lab_IFS + label_ds +
@@ -1450,9 +1452,11 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     hdul = fits.open(inpath + label_ds + flat_list_ifs_det[ii])
                     cube = hdul[0].data
                     # CROSS-TALK CORR
-                    for j in range(cube.shape[0]):
-                        cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill',
-                                                                 fill_value=0)
+                    if cube.ndim == 3:
+                        for j in range(cube.shape[0]):
+                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
+                    elif cube.ndim == 2:
+                        cube = sph_ifs_correct_spectral_xtalk(cube, boundary='fill', fill_value=0)
                     hdul[0].data = cube
                     lab_flat = xtalkcorr_lab_IFS
                     hdul.writeto(inpath + xtalkcorr_lab_IFS + label_ds +
@@ -1829,8 +1833,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                         if not isdir(inpath + lab_wc):
                             os.makedirs(inpath + lab_wc)
                         for j in range(cube.shape[0]):
-                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill',
-                                                                     fill_value=0)
+                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
                         hdul[0].data = cube
                         hdul.writeto(
                             inpath + xtalkcorr_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
