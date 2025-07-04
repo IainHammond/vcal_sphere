@@ -1870,19 +1870,13 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                 print("*** 16. IFS: Calibrating final IFU flat-fields ***", flush=True)
             if not isfile(outpath_ifs_fits + "master_flat_ifu.fits") or overwrite_sof or overwrite_fits:
                 if not isfile(outpath_ifs_sof + "master_flat_ifu.sof") or overwrite_sof:
-                    # flat_list_ifs = dico_lists['flat_list_ifs_det'] # v1
-                    flat_list_ifs = dico_lists['flat_list_ifs']  # v2 (as manual?)
-                    # flat_list_ifs_BB = dico_lists['flat_list_ifs_det_BB']
+                    flat_list_ifs = dico_lists['flat_list_ifs']
                     with open(outpath_ifs_sof + "master_flat_ifu.sof", 'w+') as f:
                         for ii in range(len(flat_list_ifs)):
                             f.write(inpath + label_ds +
                                     flat_list_ifs[ii] + '\t' + 'IFS_FLAT_FIELD_RAW\n')
-                        # TEST: UNCOMMENTED 2 LINES BELOW
-                        #                        for ii in range(len(flat_list_ifs_BB)):
-                        #                            f.write(inpath+flat_list_ifs_BB[ii]+'\t'+'IFS_FLAT_FIELD_RAW\n')
                         f.write("{}wave_calib.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_WAVECALIB\n')
-                        # f.write("{}spectra_pos.fits".format(outpath_ifs_fits)+'\t'+'IFS_SPECPOS\n')
                         f.write("{}preamp_l5.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_PREAMP_FLAT\n')
                         if ('FLAT' in dark_ifs and not indiv_fdark) or indiv_fdark:
@@ -1895,7 +1889,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                             else:
                                 lab_sof = "{}large_scale_flat_l{:.0f}.fits".format(
                                     outpath_ifs_fits, jj)  # v5c
-                            # sometimes l4 is not taken (e.g. for IRDIFS YJH+H23 mode)
+                            # sometimes l4 is not taken (YJ mode)
                             if not isfile(lab_sof) and jj == 4:
                                 continue
                             elif not isfile(lab_sof):
