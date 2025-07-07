@@ -233,7 +233,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
     skysub_lab_IRD = "skysub/"
     skysub_lab_IFS = "skycorr_IFS/"
     bpcorr_lab_IFS = "bpcorr_IFS/"
-    xtalkcorr_lab_IFS = "xtalkcorr_IFS/"
+    xtalkcorr_lab_IFS = ""
 
     ## 0. Create list of dictionaries
     if 0 in to_do or not isfile(path + "dico_files.csv"):
