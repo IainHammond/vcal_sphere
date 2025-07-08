@@ -1798,6 +1798,18 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     hdul.writeto(inpath + bpcorr_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
                                  overwrite=True)
 
+                    if xtalk_corr:  # too aggressive
+                        # CROSS-TALK CORR
+                        lab_wc = xtalkcorr_lab_IFS
+                        if not isdir(inpath + lab_wc):
+                            os.makedirs(inpath + lab_wc)
+                        for j in range(cube.shape[0]):
+                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
+                        hdul[0].data = cube
+                        hdul.writeto(
+                            inpath + xtalkcorr_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
+                            overwrite=True)
+
                 with open(outpath_ifs_sof + "wave_calib.sof", 'w+') as f:
                     for ii in range(len(wave_calib_list_ifs)):
                         f.write(
