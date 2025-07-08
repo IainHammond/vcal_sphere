@@ -1433,35 +1433,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
             flat_list_ifs_det = dico_lists['flat_list_ifs_det']
             lab_flat = ''
 
-            # 0. xtalk corr them all if needed
-            if xtalk_corr:
-                for ii in range(len(flat_list_ifs_det_BB)):
-                    hdul = fits.open(inpath + label_ds + flat_list_ifs_det_BB[ii])
-                    cube = hdul[0].data
-                    # CROSS-TALK CORR
-                    if cube.ndim == 3:
-                        for j in range(cube.shape[0]):
-                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
-                    elif cube.ndim == 2:
-                        cube = sph_ifs_correct_spectral_xtalk(cube, boundary='fill', fill_value=0)
-                    hdul[0].data = cube
-                    lab_flat = xtalkcorr_lab_IFS
-                    hdul.writeto(inpath + xtalkcorr_lab_IFS + label_ds +
-                                 flat_list_ifs_det_BB[ii], output_verify='ignore', overwrite=True)
-                for ii in range(len(flat_list_ifs_det)):
-                    hdul = fits.open(inpath + label_ds + flat_list_ifs_det[ii])
-                    cube = hdul[0].data
-                    # CROSS-TALK CORR
-                    if cube.ndim == 3:
-                        for j in range(cube.shape[0]):
-                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
-                    elif cube.ndim == 2:
-                        cube = sph_ifs_correct_spectral_xtalk(cube, boundary='fill', fill_value=0)
-                    hdul[0].data = cube
-                    lab_flat = xtalkcorr_lab_IFS
-                    hdul.writeto(inpath + xtalkcorr_lab_IFS + label_ds +
-                                 flat_list_ifs_det[ii], output_verify='ignore', overwrite=True)
-
             # 1. White preamp flat field (for stripe correction)
             with open(outpath_ifs_sof + "preamp.sof", 'w+') as f:
                 for ii in range(len(flat_list_ifs_det_BB)):
@@ -1827,19 +1798,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     hdul.writeto(inpath + bpcorr_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
                                  overwrite=True)
 
-                    if xtalk_corr:  # too aggressive
-                        # CROSS-TALK CORR
-                        lab_wc = xtalkcorr_lab_IFS
-                        if not isdir(inpath + lab_wc):
-                            os.makedirs(inpath + lab_wc)
-                        for j in range(cube.shape[0]):
-                            cube[j] = sph_ifs_correct_spectral_xtalk(cube[j], boundary='fill', fill_value=0)
-                        hdul[0].data = cube
-                        hdul.writeto(
-                            inpath + xtalkcorr_lab_IFS + wave_calib_list_ifs[ii], output_verify='ignore',
-                            overwrite=True)
-                    # pdb.set_trace()
-
                 with open(outpath_ifs_sof + "wave_calib.sof", 'w+') as f:
                     for ii in range(len(wave_calib_list_ifs)):
                         f.write(
@@ -2155,7 +2113,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     # should not matter since SDI is not done - but just in case
                     command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
-                        command += " --ifs.science_dr.xtalkco.apply=TRUE"
+                        command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
                         command += " --ifs.science_dr.use_illumination=TRUE"
                     command += " {}OBJECT{}{:.0f}.sof".format(
@@ -2276,7 +2234,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     # should not matter since SDI is not done - but just in case
                     command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
-                        command += " --ifs.science_dr.xtalkco.apply=TRUE"
+                        command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
                         command += " --ifs.science_dr.use_illumination=TRUE"
                     command += " {}CEN{}{:.0f}.sof".format(
@@ -2382,7 +2340,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     # should not matter since SDI is not done - but just in case
                     command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
-                        command += " --ifs.science_dr.xtalkco.apply=TRUE"
+                        command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
                         command += " --ifs.science_dr.use_illumination=TRUE"
                     command += " {}PSF{}{:.0f}.sof".format(
