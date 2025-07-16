@@ -16,7 +16,7 @@ from csv import writer, reader
 from glob import glob
 from json import load
 from multiprocessing import cpu_count
-from os.path import isfile, isdir, join
+from os.path import isfile, isdir
 
 from matplotlib import use as mpl_backend
 import numpy as np
@@ -1625,21 +1625,30 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     command += " {}master_flat_det_BB.sof".format(
                         outpath_ifs_sof)
                     os.system(command)
-
             os.system("rm {}tmp*.fits".format(outpath_ifs_fits))
 
+            # mask flats due to vignetting
+            ifu_mask = open_fits(inpath_filt_table + "ifu_mask.fits", verbose=False)
+            for i in range(1, 6):
+                # l4 wont always be taken (YJ mode)
+                if isfile(outpath_ifs_fits + f"master_flat_det_l{i}.fits"):
+                    flat = open_fits(outpath_ifs_fits + f"master_flat_det_l{i}.fits", verbose=False)
+                    flat[ifu_mask == 0] = 1
+                    write_fits(outpath_ifs_fits + f"master_flat_det_l{i}.fits", flat, verbose=False)
+
             # open each flat and plot them. laser 1 - 3 and BB is always taken, 4 only in YJH
-            flat_fits = [open_fits(outpath_ifs_fits + "master_flat_det_l{:.0f}.fits".format(f), verbose=False) for f in
+            flats = [open_fits(outpath_ifs_fits + "master_flat_det_l{:.0f}.fits".format(f), verbose=False) for f in
                          range(1, 4)]
             if isfile(outpath_ifs_fits + "master_flat_det_l4.fits"):
-                flat_fits.append(open_fits(outpath_ifs_fits + "master_flat_det_l4.fits", verbose=False))
-            flat_fits.append(open_fits(outpath_ifs_fits + "master_flat_det_l5.fits", verbose=False))
+                flats.append(open_fits(outpath_ifs_fits + "master_flat_det_l4.fits", verbose=False))
+            flats.append(open_fits(outpath_ifs_fits + "master_flat_det_l5.fits", verbose=False))
+
             # label for each plot saying laser number
-            labels = ["Laser " + s for s in [str(f) for f in range(1, len(flat_fits))]]
+            labels = ["Laser " + s for s in [str(f) for f in range(1, len(flats))]]
             labels.append("BB")
-            vmax = tuple(np.percentile(frame, q=99) for frame in flat_fits)
-            vmin = tuple(np.percentile(frame, q=1) for frame in flat_fits)
-            plot_frames(tuple(flat_fits), vmax=vmax, vmin=vmin, label=tuple(labels),
+            vmax = tuple(np.percentile(frame, q=99) for frame in flats)
+            vmin = tuple(np.percentile(frame, q=1) for frame in flats)
+            plot_frames(tuple(flats), vmax=vmax, vmin=vmin, label=tuple(labels),
                         cmap="inferno", dpi=300, save=f"{outpath_ifs_fits}master_flat_det_l1-5.pdf")
 
         # SPECTRA POSITIONS
