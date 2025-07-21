@@ -1486,8 +1486,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     if run_rec and (not isfile(outpath_ifs_fits + "large_scale_flat_l{:.0f}.fits".format(
                             kk)) or overwrite_sof or overwrite_fits):
                         command = "{} sph_ifs_master_detector_flat".format(com_esorex)
-                        command += " --ifs.master_detector_flat.badpix_lowtolerance=0.2"
-                        command += " --ifs.master_detector_flat.badpix_uptolerance=5."
                         command += " --ifs.master_detector_flat.save_addprod=TRUE"
                         if flat_fit and counter > 4:
                             command += " --ifs.master_detector_flat.robust_fit=TRUE"
@@ -1526,8 +1524,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
 
                 if not isfile(outpath_ifs_fits + "large_scale_flat_l5.fits") or overwrite_sof or overwrite_fits:
                     command = "{} sph_ifs_master_detector_flat".format(com_esorex)
-                    command += " --ifs.master_detector_flat.badpix_lowtolerance=0.2"
-                    command += " --ifs.master_detector_flat.badpix_uptolerance=5."
                     command += " --ifs.master_detector_flat.save_addprod=TRUE"
                     if flat_fit and len(flat_list_ifs_det_BB) > 4:
                         command += " --ifs.master_detector_flat.robust_fit=TRUE"
@@ -1572,8 +1568,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     if run_rec and (not isfile(outpath_ifs_fits + "master_flat_det_l{:.0f}.fits".format(
                             kk)) or overwrite_sof or overwrite_fits):
                         command = "{} sph_ifs_master_detector_flat".format(com_esorex)
-                        command += " --ifs.master_detector_flat.badpix_lowtolerance=0.2"
-                        command += " --ifs.master_detector_flat.badpix_uptolerance=5."
                         # command+= " --ifs.master_detector_flat.save_addprod=TRUE"
                         # command+= " --ifs.master_detector_flat.outfilename={}tmp1.fits".format(outpath_ifs_fits)
                         command += " --ifs.master_detector_flat.outfilename={}master_flat_det.fits".format(
@@ -1742,8 +1736,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                         command += " --ifs.instrument_flat.make_badpix=TRUE"
                         command += " --ifs.instrument_flat.badpixfilename={}master_badpixelmap_tot.fits".format(
                             outpath_ifs_fits)
-                        command += " --ifs.instrument_flat.badpix_lowtolerance=0.2"
-                        command += " --ifs.instrument_flat.badpix_uptolerance=5.0"
                     command += " --ifs.instrument_flat.iff_filename={}master_flat_tot.fits".format(
                         outpath_ifs_fits)
                     if flat_fit:  # and len(flat_list_ifs) > 4:
@@ -1895,8 +1887,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                         command += " --ifs.instrument_flat.make_badpix=TRUE"
                         command += " --ifs.instrument_flat.badpixfilename={}master_badpixelmap_tot.fits".format(
                             outpath_ifs_fits)
-                        command += " --ifs.instrument_flat.badpix_lowtolerance=0.2"
-                        command += " --ifs.instrument_flat.badpix_uptolerance=5.0"
                     command += " --ifs.instrument_flat.ifu_filename={}master_flat_ifu.fits".format(outpath_ifs_fits)
                     # providing the instrument_flat.iff path, or else esorex saves it to the current working directory
                     command += " --ifs.instrument_flat.iff_filename={}master_flat_tot.fits".format(outpath_ifs_fits)
