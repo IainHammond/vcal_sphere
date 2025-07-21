@@ -1277,7 +1277,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                        verbose=False)  # saves cube of all darks
             if not isfile(outpath_ifs_fits + "master_dark.fits") or overwrite_sof or overwrite_fits:
                 command = "{} sph_ifs_master_dark".format(com_esorex)
-                command += " --ifs.master_dark.sigma_clip=10.0"
+                command += " --ifs.master_dark.sigma_clip=5.0"
                 command += " --ifs.master_dark.outfilename={}master_dark.fits".format(outpath_ifs_fits)
                 command += " --ifs.master_dark.badpixfilename={}master_badpixelmap.fits".format(outpath_ifs_fits)
                 command += " {}master_dark.sof".format(outpath_ifs_sof)
@@ -1345,7 +1345,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     if not isfile(
                             outpath_ifs_fits + "master_dark{:.0f}.fits".format(nn)) or overwrite_sof or overwrite_fits:
                         command = "{} sph_ifs_master_dark".format(com_esorex)
-                        command += " --ifs.master_dark.sigma_clip=10.0"
+                        command += " --ifs.master_dark.sigma_clip=5.0"
                         command += " --ifs.master_dark.outfilename={}master_dark{:.0f}.fits".format(outpath_ifs_fits,
                                                                                                     nn)
                         command += " --ifs.master_dark.badpixfilename={}master_badpixelmap{:.0f}.fits".format(
@@ -1446,8 +1446,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
 
             if not isfile(outpath_ifs_fits + "preamp_l5.fits") or overwrite_sof or overwrite_fits:
                 command = "{} sph_ifs_master_detector_flat".format(com_esorex)
-                command += " --ifs.master_detector_flat.badpix_lowtolerance=0.2"
-                command += " --ifs.master_detector_flat.badpix_uptolerance=5."
                 command += " --ifs.master_detector_flat.save_addprod=TRUE"
                 if flat_fit and len(flat_list_ifs_det_BB) > 4:
                     command += " --ifs.master_detector_flat.robust_fit=TRUE"
