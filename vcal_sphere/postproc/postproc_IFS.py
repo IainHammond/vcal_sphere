@@ -43,7 +43,7 @@ from vip_hci.preproc import cube_derotate
 from vip_hci.fits import open_fits, write_fits
 from vip_hci.var import mask_circle, frame_center
 
-from vcal import __path__ as vcal_path
+from vcal_sphere import __path__ as vcal_path
 mpl_backend('Agg')
 
 

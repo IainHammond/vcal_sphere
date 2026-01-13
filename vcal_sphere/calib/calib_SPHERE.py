@@ -25,7 +25,7 @@ from astropy.stats.sigma_clipping import sigma_clipped_stats
 from photutils.aperture import aperture_photometry, CircularAperture, CircularAnnulus
 
 from hciplot import plot_frames
-from vcal import __path__ as vcal_path
+from vcal_sphere import __path__ as vcal_path
 from vip_hci.fits import open_fits, open_header, write_fits
 from vip_hci.metrics.detection import peak_coordinates
 from vip_hci.preproc import frame_shift, cube_subtract_sky_pca, cube_fix_badpix_clump

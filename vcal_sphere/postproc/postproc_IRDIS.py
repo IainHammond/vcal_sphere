@@ -23,7 +23,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pandas import DataFrame as DF
 
-from vcal import __path__ as vcal_path
+from vcal_sphere import __path__ as vcal_path
 from vip_hci.config import time_ini, timing
 from vip_hci.fits import open_fits, write_fits
 from vip_hci.fm import normalize_psf, cube_inject_companions, cube_planet_free, find_nearest

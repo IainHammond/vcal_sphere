@@ -24,7 +24,7 @@ from matplotlib import use as mpl_backend
 from pandas.io.parsers.readers import read_csv
 
 from hciplot import plot_frames
-from vcal import __path__ as vcal_path
+from vcal_sphere import __path__ as vcal_path
 from vip_hci.fits import open_fits, open_header, write_fits
 from vip_hci.fm import normalize_psf, find_nearest
 from vip_hci.metrics import inverse_stim_map as compute_inverse_stim_map
