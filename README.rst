@@ -42,7 +42,7 @@ in 'develop' mode:
 .. code-block:: bash
 
   $ cd vcal_sphere
-  $ python setup.py develop
+  $ pip install -e . --group dev
 
 If cloned from your fork, make sure to link your vcal_sphere directory to the upstream 
 source, to be able to easily update your local copy when a new version comes 

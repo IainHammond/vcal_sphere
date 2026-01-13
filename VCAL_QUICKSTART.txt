@@ -12,8 +12,7 @@ B. Install dfits or dfitspy. The latter can be installed with: pip install dfits
 
 C. Install vcal_sphere (see also README file):
 	- make a local copy of the Github repo
-	- python setup.py
-	- pip install -r requirements.txt  # to be sure you get all packages installed 
+	- pip install -e . --group dev
 
 
 1) Download:
