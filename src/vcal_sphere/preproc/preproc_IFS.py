@@ -69,7 +69,7 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
     with open(params_calib_name, 'r') as read_file_params_calib:
         params_calib = load(read_file_params_calib)
 
-    with open(vcal_path[0] + "/instr_param/sphere.json", 'r') as instr_param_file:
+    with open(vcal_path[0] + "/src/vcal_sphere/static/sphere.json", 'r') as instr_param_file:
         instr_cst = load(instr_param_file)
 
     #**************************** PARAMS TO BE ADAPTED ****************************
@@ -77,7 +77,7 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
     inpath = path+"IFS_reduction/1_calib_esorex/calib/"
     label_test = params_preproc.get('label_test', '')
     outpath = path+"IFS_reduction/2_preproc_vip{}/".format(label_test)
-    nd_filename = vcal_path[0][:-4]+"Static/SPHERE_CPI_ND.dat"  # FILE WITH TRANSMISSION OF NEUTRAL DENSITY FILTER
+    nd_filename = vcal_path[0] + "/src/vcal_sphere/static/SPHERE_CPI_ND.dat"  # FILE WITH TRANSMISSION OF NEUTRAL DENSITY FILTER
     use_cen_only = params_preproc.get('use_cen_only', 0)
 
     sky = params_calib['sky']

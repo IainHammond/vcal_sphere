@@ -58,7 +58,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
     if path[-1] != '/':
         path += '/'
     inpath = path + "raw/"
-    inpath_filt_table = vcal_path[0][:-4] + "Static/"
+    inpath_filt_table = vcal_path[0] + "/src/vcal_sphere/static/"
 
     # if not provided, automatically infer observing mode from fits files in data path (most common is chosen)
     if 'comb_iflt' in params_calib:
@@ -82,7 +82,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
     if "DP" in comb_iflt:
         raise TypeError("vcal does not handle DPI data => use IRDAP")
 
-    with open(vcal_path[0] + "/instr_param/sphere_filt_spec.json", 'r') as filt_spec_file:
+    with open(vcal_path[0] + "/src/vcal_sphere/static/sphere_filt_spec.json", 'r') as filt_spec_file:
         filt_spec = load(filt_spec_file)[comb_iflt]  # Get infos of current filters combination
 
     # subdirectories

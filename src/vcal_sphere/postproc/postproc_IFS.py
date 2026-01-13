@@ -255,7 +255,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
 
 
     if coro:
-        transmission_name = vcal_path[0] + "/../Static/" + "SPHERE_IFS_ALC_transmission_px.fits"
+        transmission_name = vcal_path[0] + "/src/vcal_sphere/static/SPHERE_IFS_ALC_transmission_px.fits"
         transmission = open_fits(transmission_name, verbose=False)
     else:
         transmission = None

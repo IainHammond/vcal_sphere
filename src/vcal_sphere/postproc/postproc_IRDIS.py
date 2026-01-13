@@ -88,7 +88,7 @@ def postproc_IRDIS(params_postproc_name='VCAL_params_postproc_IRDIS.json',
         params_preproc = json.load(read_file_params_preproc)
     with open(params_calib_name, 'r') as read_file_params_calib:
         params_calib = json.load(read_file_params_calib)
-    with open(vcal_path[0] + "/instr_param/sphere_filt_spec.json", 'r') as filt_spec_file:
+    with open(vcal_path[0] + "/src/vcal_sphere/static/sphere_filt_spec.json", 'r') as filt_spec_file:
         filt_spec = json.load(filt_spec_file)[params_calib['comb_iflt']]  # Get infos of current filters combination
 
     # from calib
@@ -229,7 +229,7 @@ def postproc_IRDIS(params_postproc_name='VCAL_params_postproc_IRDIS.json',
             mask_PCA = int(mask_PCA/np.median(plsc_ori))
 
     if coro:
-        transmission_name = vcal_path[0] + "/../Static/" + "SPHERE_IRDIS_ALC_transmission_px.fits"
+        transmission_name = vcal_path[0] + "/src/vcal_sphere/static/SPHERE_IRDIS_ALC_transmission_px.fits"
         transmission = open_fits(transmission_name)
         transmission = (transmission[1],transmission[0])
     else:
