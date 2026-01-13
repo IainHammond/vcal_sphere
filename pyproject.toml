@@ -4,10 +4,10 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "vcal_sphere"
-dynamic = ["version", "description"]
 version = "2026.1.13"
 description = "A package for VLT/SPHERE data reduction."
 readme = "README.rst"
+dynamic = ["version"]
 authors = [
   { name = "Valentin Christiaens", email = "valentin.christiaens@uliege.be" },
   { name = "Iain Hammond", email = "iahammond@mpia.de" },
