@@ -74,7 +74,6 @@ true_ncen = 2                                                # number of points 
 scaling_from_satspots = 0                                      # whether to determine the scaling factors by fitting to the satspots in each channel. If False, theoretical scaling factors will be used (max(lambda)/lambdas) in post-processing. Should be set to False for dim targets.
 norm_per_s = True                                            # if True, divide all frames by respective dit => have all fluxes in adu/s
 template_strehl = ["science_dbi_{}{:.0f}","psf_dbi_{}{:.0f}"]
-distort_corr = 1                                             # whether to correct for distortion (anamorphism) or not (following scal_x_distort and scal_y_distort)
 final_crop_sz = 361                                          # int or list (if list, cubes of different dims will be saved). NOTE: only last odd dim will be saved using final_cubename . 823 # 361 => 2.25'' radius; but better to keep it as large as possible and only crop before post-processing. Here we just cut the useless edges (100px on each side)
 final_crop_sz_psf = 17                                       # int or list (if list, cubes of different dims will be saved). NOTE: only last odd dim will be saved using final_psfname. 51 => 0.25'' radius (~3.5 FWHM)
 psf_model = 'gauss'                                          #'airy' #model to be used to measure FWHM and flux. Choice between {'gauss', 'moff', 'airy'}
