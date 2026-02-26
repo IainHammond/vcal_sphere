@@ -1675,8 +1675,8 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     elif 'SPEC_POS' in dark_ifs:
                         f.write("{}master_dark.fits".format(
                             outpath_ifs_fits) + '\t' + 'IFS_MASTER_DARK\n')
-                    # if mode == "YJ":
-                    #     f.write(f"{inpath_filt_table}ifs_lenslet_model_Y_J.txt" + '\t' + 'IFS_LENSLET_MODEL\n')
+                    if mode == "YJ":
+                        f.write(f"{inpath_filt_table}ifs_lenslet_model_Y_J.txt" + '\t' + 'IFS_LENSLET_MODEL\n')
 
             if not isfile(outpath_ifs_fits + "spectra_pos.fits") or overwrite_sof or overwrite_fits:
                 command = "{} sph_ifs_spectra_positions".format(com_esorex)
