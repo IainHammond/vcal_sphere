@@ -303,8 +303,12 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                             write_fits(outpath+filename+"_1bpcorr_bpmap.fits", cube[1], header=header, verbose=debug)
                             cube = cube[0]
 
-                        # add distortion correction here if requested in the params (not yet implemented)
-
+                        # distortion correction
+                        cube = cube_rescaling(cube, scaling_list=None, ref_xy=None,
+                                              imlib='opencv', #Note: FFT unusable because scaling_y!=scaling_x
+                                              interpolation='lanczos4',
+                                              scaling_y=scal_y_distort,
+                                              scaling_x=scal_x_distort)
                         write_fits(outpath+filename+"_1bpcorr.fits", cube, header=header, verbose=debug)
 
         #******************************* RECENTERING ******************************
