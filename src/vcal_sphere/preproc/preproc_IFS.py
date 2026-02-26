@@ -69,9 +69,6 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
     with open(params_calib_name, 'r') as read_file_params_calib:
         params_calib = load(read_file_params_calib)
 
-    with open(vcal_path[0] + "/src/vcal_sphere/static/sphere.json", 'r') as instr_param_file:
-        instr_cst = load(instr_param_file)
-
     #**************************** PARAMS TO BE ADAPTED ****************************
     path = params_calib['path']
     inpath = path+"IFS_reduction/1_calib_esorex/calib/"
@@ -91,20 +88,6 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
 
     # parts of pipeline
     to_do = params_preproc.get('to_do',{1,2,3,4,5,6,7,8})  # parts of pre-processing to be run.
-    #1. crop odd + bad pix corr
-    #   a. with provided mask (static) => iterative because clumps
-    #   b. sigma filtering (cosmic rays) => non-iterative
-    #2. Recentering
-    #3. final crop
-    #4. combine all cropped cubes + compute derot_angles [bin if requested]
-    #5. bad frame rejection
-    #   a. Plots before rejection
-    #   b. Rejection
-    #   c. Plots after rejection
-    #6. FWHM + unsat flux (PSF)
-    #   a. Gaussian
-    #   b. Airy
-    #7. final ADI cubes writing - pick one from step 5
     overwrite = params_preproc.get('overwrite',[1]*8) # list of bools corresponding to parts of pre-processing to be run again even if files already exist. Same order as to_do
     debug = params_preproc.get('debug',0) # whether to print more info - useful for debugging
     save_space = params_preproc['save_space'] # whether to progressively delete intermediate products as new products are calculated (can save space but will make you start all over from the beginning in case of bug)
@@ -132,23 +115,15 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
     max_bpix_nit = params_preproc.get('max_bpix_nit', 10)
 
     #******************** PARAMS LIKELY GOOD AS DEFAULT ***************************
-
-    # First run  dfits *.fits |fitsort DET.SEQ1.DIT INS1.FILT.NAME INS1.OPTI2.NAME DPR.TYPE INS4.COMB.ROT
-    # then adapt below
-    #filters = ["K1","K2"] #DBI filters
-    #filters_lab = ['_left','_right']
-    #lbdas = np.array([2.11,2.251])
-    #n_z = lbdas.shape[0]
-    diam = instr_cst.get('diam',8.1)
-    plsc = params_preproc.get('plsc',0.00746)  # arcsec/pixel # Maire 2016
-    #print("Resel: {:.2f} / {:.2f} px (K1/K2)".format(resel[0],resel[1]))
+    diam = 8.1
+    plsc = 0.00746  # arcsec/pixel Maire 2016
 
     # Systematic errors (cfr. Maire et al. 2016)
-    pup_off = instr_cst.get('pup_off',135.99)
-    TN = instr_cst.get('TN',-1.75)  # pm0.08 deg
-    ifs_off = params_preproc.get('ifs_off',-100.48)              # for ifs data: -100.48 pm 0.13 deg # for IRDIS: 0
-    #scal_x_distort = instr_cst.get('scal_x_distort',1.0059)
-    #scal_y_distort = instr_cst.get('scal_y_distort',1.0011)
+    pup_off = 135.99
+    TN = -1.75  # +-0.08 deg
+    ifs_off = -100.48  # for ifs data: -100.48 +- 0.13 deg
+    scal_x_distort = 1.0059
+    scal_y_distort = 1.0011
     mask_scal = params_preproc.get('mask_scal',[0.15,0])
 
     # preprocessing options
@@ -194,23 +169,6 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
         final_scalefac_name = final_scalefac_name[:-5]
     final_cubename_norm = final_cubename+"_norm"
     final_psfname_norm = final_psfname+"_norm"
-    # TO DO LIST:
-
-    #1. crop odd + bad pix corr
-    #   a. with provided mask (static) => iterative because clumps
-    #   b. sigma filtering (cosmic rays) => non-iterative
-    #2. Recenter
-    #3. final crop
-    #4. combine all cropped cubes + compute derot_angles [bin if requested]
-    #5. bad frame rejection
-    #   a. Plots before rejection
-    #   b. Rejection
-    #   c. Plots after rejection
-    #6. FWHM + unsat flux (PSF)
-    #   a. Gaussian
-    #   b. Airy
-    #7. final ADI cubes writing - pick one from step 5
-
 
     # List of OBJ and PSF files
     dico_lists = {}
@@ -269,8 +227,6 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
         else:  # case there are only CEN files
             cube, header = open_fits(inpath+CEN_IFS_list[0]+".fits", header=True, verbose=debug)
         dit_ifs = float(header['HIERARCH ESO DET SEQ1 DIT'])
-        #filt1 = header['HIERARCH ESO INS1 FILT NAME']
-        #filt2 = header['HIERARCH ESO INS1 OPTI2 NAME']
         lbda_0 = float(header['CRVAL3'])
         delta_lbda = float(header['CD3_3'])
         n_z = cube.shape[0]
@@ -346,6 +302,9 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                         if full_output:
                             write_fits(outpath+filename+"_1bpcorr_bpmap.fits", cube[1], header=header, verbose=debug)
                             cube = cube[0]
+
+                        # add distortion correction here if requested in the params (not yet implemented)
+
                         write_fits(outpath+filename+"_1bpcorr.fits", cube, header=header, verbose=debug)
 
         #******************************* RECENTERING ******************************

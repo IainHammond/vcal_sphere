@@ -2,7 +2,6 @@
     "to_do": [1,2,3,4,5,6,7],
     "coro": 1,
     "coro_sz": 12,
-    "plsc":0.00746,
     "rec_met": "satspots" ,
     "rec_met_psf": "dft_100",
     "sigfactor":5,
