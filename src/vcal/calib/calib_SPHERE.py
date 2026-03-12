@@ -55,7 +55,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
         params_calib = load(read_file_params_calib)
 
     path = params_calib['path']
-    if path[-1] != '/':
+    if not path.endswith('/'):
         path += '/'
     inpath = path + "raw/"
     inpath_filt_table = vcal_path[0] + "/static/"

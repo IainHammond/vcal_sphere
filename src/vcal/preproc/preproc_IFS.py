@@ -71,6 +71,8 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
 
     #**************************** PARAMS TO BE ADAPTED ****************************
     path = params_calib['path']
+    if not path.endswith('/'):
+        path += '/'
     inpath = path+"IFS_reduction/1_calib_esorex/calib/"
     label_test = params_preproc.get('label_test', '')
     outpath = path+"IFS_reduction/2_preproc_vip{}/".format(label_test)
