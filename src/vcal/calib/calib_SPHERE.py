@@ -1375,8 +1375,8 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                 # make vmin, vmax and labels with integration time for plot
                 labels = tuple(
                     [s + ' sec' for s in [str(dit_ifs_flat_list) for dit_ifs_flat_list in dit_ifs_flat_list]])
-                vmax = tuple(np.percentile(frame, q=98) for frame in all_median_darks)
-                vmin = tuple(np.percentile(frame, q=2) for frame in all_median_darks)
+                vmax = tuple(float(np.percentile(frame, q=98)) for frame in all_median_darks)
+                vmin = tuple(float(np.percentile(frame, q=2)) for frame in all_median_darks)
                 plot_frames(tuple(all_median_darks), vmax=vmax, vmin=vmin, cmap="inferno", dpi=300, label=labels,
                             save=outpath_ifs_fits + "all_master_darks.pdf")
 
@@ -1638,8 +1638,8 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
             # label for each plot saying laser number
             labels = ["Laser " + s for s in [str(f) for f in range(1, len(flats))]]
             labels.append("BB")
-            vmax = tuple(np.percentile(frame, q=99) for frame in flats)
-            vmin = tuple(np.percentile(frame, q=1) for frame in flats)
+            vmax = tuple(float(np.percentile(frame, q=99)) for frame in flats)
+            vmin = tuple(float(np.percentile(frame, q=1)) for frame in flats)
             plot_frames(tuple(flats), vmax=vmax, vmin=vmin, label=tuple(labels),
                         cmap="inferno", dpi=300, save=f"{outpath_ifs_fits}master_flat_det_l1-5.pdf")
 
