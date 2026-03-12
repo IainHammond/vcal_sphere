@@ -2338,7 +2338,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     command += " --ifs.science_dr.outfilename={}tmp_psf{}_{:.0f}.fits".format(
                         outpath_ifs_fits, lab_distort, ii)
                     command += " --ifs.science_dr.use_adi=0"
-                    command += " --ifs.science_dr.reflambda=1.65"
+                    command += " --ifs.science_dr.spec_deconv=FALSE"
                     if xtalk_corr:
                         command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
