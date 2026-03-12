@@ -2117,10 +2117,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     command += " --ifs.science_dr.outfilename={}tmp{}_{:.0f}.fits".format(
                         outpath_ifs_fits, lab_distort, ii)
                     command += " --ifs.science_dr.use_adi=0"
-                    # should not do SDI because not centered !!!
                     command += " --ifs.science_dr.spec_deconv=FALSE"
-                    # should not matter since SDI is not done - but just in case
-                    command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
                         command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
@@ -2238,10 +2235,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     command += " --ifs.science_dr.outfilename={}tmp_cen{}_{:.0f}.fits".format(
                         outpath_ifs_fits, lab_distort, ii)
                     command += " --ifs.science_dr.use_adi=0"
-                    # should not do SDI because not centered !!!
                     command += " --ifs.science_dr.spec_deconv=FALSE"
-                    # should not matter since SDI is not done - but just in case
-                    command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
                         command += " --ifs.science_dr.xtalkco.apply=FALSE"
                     if illum_pattern_corr:
@@ -2344,9 +2338,6 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     command += " --ifs.science_dr.outfilename={}tmp_psf{}_{:.0f}.fits".format(
                         outpath_ifs_fits, lab_distort, ii)
                     command += " --ifs.science_dr.use_adi=0"
-                    # should not do SDI because not centered !!!
-                    command += " --ifs.science_dr.spec_deconv=FALSE"
-                    # should not matter since SDI is not done - but just in case
                     command += " --ifs.science_dr.reflambda=1.65"
                     if xtalk_corr:
                         command += " --ifs.science_dr.xtalkco.apply=FALSE"
