@@ -120,7 +120,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
 
     # from preproc
     coro = params_preproc['coro']
-    plsc = np.array(params_preproc['plsc'])
+    plsc = params_preproc.get('plsc', 0.00746)
     final_crop_sz = params_preproc.get('final_crop_sz', 101)
     final_cubename = params_preproc.get('final_cubename', 'final_cube_ASDI')
     final_anglename = params_preproc.get('final_anglename', 'final_derot_angles')
@@ -331,7 +331,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
             label_stg += "_"+scaling
         if mask_PCA is not None:
             label_stg += "_mask{:.1f}".format(mask_PCA)
-            mask_PCA = int(mask_PCA/np.median(plsc))
+            mask_PCA = int(mask_PCA/plsc)
     else:
         label_stg = "ADI"
         ref_cube = None
