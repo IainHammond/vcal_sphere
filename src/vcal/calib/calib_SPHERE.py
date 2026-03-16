@@ -2000,7 +2000,7 @@ def calib(params_calib_name='VCAL_params_calib.json') -> None:
                     for aa, ap in enumerate(corner_coords):
                         aper = CircularAperture(ap, r=msky_ap)
                         flux_tmp = aperture_photometry(tmp[zz], aper, method="exact")
-                        fluxes[aa] = np.array(flux_tmp["aperture_sum"])
+                        fluxes[aa] = float(flux_tmp["aperture_sum"][0])
                     avg = np.median(fluxes) / (np.pi * msky_ap ** 2)
                     tmp[zz] -= avg
                 hdul[0].data = tmp
