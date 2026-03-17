@@ -115,6 +115,8 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
 
     # from calib
     path = params_calib['path']
+    if not path.endswith('/'):
+        path += '/'
     path_ifs = path+"IFS_reduction/"
     outpath_fig = path_ifs+'outpath_fig/'
 
