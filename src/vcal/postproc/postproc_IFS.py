@@ -921,7 +921,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
 
 
         label_test_ori = label_test
-        if ref_cube_name is None or ref_cube_name != "":
+        if not ref_cube_name:
             ref_cube = None  # can't input ref_cube = [None] * nz to the ASDI functions
         ###################### 7. PCA-SADI full (single step) #########################
         if do_sadi_full and sadi_steps==1:
