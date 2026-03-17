@@ -956,7 +956,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                                                    check_memory=False, ifs_collapse_range=ifs_collapse_range,
                                                    full_output=True, verbose=verbose, mask_rdi=mask_rdi,
                                                    nproc=nproc, imlib=imlib, source_xy=source_xy)
-                            tmp[pp], _, tmp_tmp = pca(algo_params=params_pca)
+                            tmp[pp], _, _, tmp_tmp = pca(algo_params=params_pca)
                             if debug:
                                 write_fits(outpath+'TMP_final_PCA-SADI1_full_npc{:.0f}_'.format(npc)+test_pcs_str+label_test+'.fits', tmp_tmp)
                             if do_stim_map:
