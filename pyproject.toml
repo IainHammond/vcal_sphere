@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 [project]
 name = "vcal_sphere"
-version = "2026.03.11"
+version = "2026.03.18"
 description = "A package for VLT/SPHERE data reduction."
 readme = "README.rst"
 authors = [
@@ -18,10 +18,10 @@ classifiers = [
   "Operating System :: POSIX :: Linux",
   "Operating System :: MacOS :: MacOS X",
   "Programming Language :: Python :: 3 :: Only",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Scientific/Engineering :: Astronomy",
 ]
 dependencies = [
