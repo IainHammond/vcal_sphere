@@ -306,6 +306,11 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                             cube = cube[0]
 
                         # distortion correction
+                        # ESO Reflex page 30: The recipe to determine the distortion of IFS frames is not robust.
+                        # Data taken close in time of each other may provide different central axes, which in turn
+                        # distort the science data when applied. Therefore this recipe is not part of the workflow.
+                        # The main part of the distortion is due to an anamorphism of about 0.6%, which can be corrected
+                        # by multiplying the X and Y coordinates by 1.0059 and 1.0011, respectively.
                         cube = cube_rescaling(cube, scaling_list=None, ref_xy=None,
                                               imlib='opencv', #Note: FFT unusable because scaling_y!=scaling_x
                                               interpolation='lanczos4',
