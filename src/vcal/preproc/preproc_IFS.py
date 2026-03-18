@@ -305,7 +305,7 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                             write_fits(outpath+filename+"_1bpcorr_bpmap.fits", cube[1], header=header, verbose=debug)
                             cube = cube[0]
 
-                        # distortion correction
+                        # anamorphism correction
                         # ESO Reflex page 30: The recipe to determine the distortion of IFS frames is not robust.
                         # Data taken close in time of each other may provide different central axes, which in turn
                         # distort the science data when applied. Therefore this recipe is not part of the workflow.
