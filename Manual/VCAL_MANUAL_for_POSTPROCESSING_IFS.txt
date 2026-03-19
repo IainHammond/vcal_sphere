@@ -56,6 +56,7 @@ This file describes the structure of the postprocessing pipeline for IRDIS, and 
 
 #RDI
 ref_cube_name # full path to a reference cube. If provided, will trigger RDI! Should leave a blank in the name for filter.
+ref_strategy  # Indicates the strategy to be adopted when a reference cube is provided ('RDI', 'ARDI', 'RSDI', 'ARSDI')
 prep_ref_cube: [2,3]                # whether to:
 1) perform an additional step of fine recentering based on cross-correlation of log speckle intensities in full frames; 
 2) same as 1) but using median shifts inferred in 8 subframes (avoiding center area dominated by mask residuals);

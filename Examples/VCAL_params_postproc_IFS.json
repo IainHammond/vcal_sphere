@@ -16,6 +16,7 @@
     "end_nz":-1,
     "mask_IWA":10,
     "ref_cube_name": "",
+    "ref_strategy": "RSDI",
     "do_snr_map":0,
     "do_stim_map":1,
     "exclude_negative_lobes":1,
