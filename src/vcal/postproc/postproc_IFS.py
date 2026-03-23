@@ -480,7 +480,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                         tmp[pp], tmp_tmp, tmp_tmp_der = pca(algo_params=params_pca)
                         if do_stim_map:
                             stim_map[pp] = compute_stim_map(tmp_tmp_der)
-                            inv_stim_map[pp] = compute_inverse_stim_map(tmp_tmp,derot_angles, nproc=nproc, imlib=imlib)
+                            inv_stim_map[pp] = compute_inverse_stim_map(tmp_tmp[:len(derot_angles)],derot_angles, nproc=nproc, imlib=imlib)
                             thr[pp] = np.amax(inv_stim_map[pp])
                         if planet:
                             snr_tmp[pp] = snr(tmp[pp], source_xy=(xx_comp,yy_comp), fwhm=fwhm_med, plot=False,
@@ -967,7 +967,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                             if do_stim_map:
                                 tmp_tmp_der = cube_derotate(tmp_tmp, derot_angles, imlib=imlib, nproc=nproc)
                                 stim_map[pp] = compute_stim_map(tmp_tmp_der)
-                                inv_stim_map[pp] = compute_inverse_stim_map(tmp_tmp,derot_angles, nproc=nproc, imlib=imlib)
+                                inv_stim_map[pp] = compute_inverse_stim_map(tmp_tmp[:len(derot_angles)],derot_angles, nproc=nproc, imlib=imlib)
                                 thr[pp] = np.amax(inv_stim_map[pp])
                         if planet:
                             snr_tmp[pp] = snr(tmp[pp], (xx_comp,yy_comp), fwhm_med, plot=False, exclude_negative_lobes=exclude_negative_lobes,
@@ -1147,7 +1147,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                                 tmp[counter], tmp_tmp, tmp_tmp_der = pca(algo_params=params_pca)
                                 if do_stim_map:
                                     stim_map[counter] = compute_stim_map(tmp_tmp_der)
-                                    inv_stim_map[counter] = compute_inverse_stim_map(tmp_tmp,derot_angles, nproc=nproc,
+                                    inv_stim_map[counter] = compute_inverse_stim_map(tmp_tmp[:len(derot_angles)],derot_angles, nproc=nproc,
                                                                                      imlib=imlib)
                                     thr[counter] = np.amax(inv_stim_map[counter])
 
@@ -1324,7 +1324,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
                                 tmp_tmp, tmp_tmp_der, tmp[counter] = pca_annular(algo_params=params_ann)
                                 if do_stim_map:
                                     stim_map[counter] = compute_stim_map(tmp_tmp_der)
-                                    inv_stim_map[counter] = compute_inverse_stim_map(tmp_tmp,derot_angles, nproc=nproc,
+                                    inv_stim_map[counter] = compute_inverse_stim_map(tmp_tmp[:len(derot_angles)],derot_angles, nproc=nproc,
                                                                                      imlib=imlib)
                                     thr[counter] = np.amax(inv_stim_map[counter])
 
