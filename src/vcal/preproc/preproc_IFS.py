@@ -468,8 +468,8 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                                     y_shifts = np.zeros(n_z)
                                     x_shifts = np.zeros(n_z)
                                     for zz in range(n_z):
-                                        y_shifts[zz] = np.interp([mjd],unique_mjd_cen,y_shifts_cen[:,zz])
-                                        x_shifts[zz] = np.interp([mjd],unique_mjd_cen,x_shifts_cen[:,zz])
+                                        y_shifts[zz] = np.interp(mjd, unique_mjd_cen, y_shifts_cen[:,zz])
+                                        x_shifts[zz] = np.interp(mjd, unique_mjd_cen, x_shifts_cen[:,zz])
                                         cube[zz] = frame_shift(cube[zz], y_shifts[zz], x_shifts[zz], imlib=imlib)
                                     std_shift.append(np.sqrt(np.std(y_shifts)**2+np.std(x_shifts)**2))
                                     if debug:
@@ -713,8 +713,8 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                                     mjd = float(header['MJD-OBS'])
                                     all_mjd.append(mjd)
                                     for zz in range(n_z):  # interpolate based on cen shifts
-                                        y_shifts[zz] = np.interp(x=[mjd], xp=unique_mjd_cen, fp=y_shifts_cen[:, zz])
-                                        x_shifts[zz] = np.interp(x=[mjd], xp=unique_mjd_cen, fp=x_shifts_cen[:, zz])
+                                        y_shifts[zz] = np.interp(x=mjd, xp=unique_mjd_cen, fp=y_shifts_cen[:, zz])
+                                        x_shifts[zz] = np.interp(x=mjd, xp=unique_mjd_cen, fp=x_shifts_cen[:, zz])
                                     cube = cube_shift(cube, shift_y=y_shifts, shift_x=x_shifts, nproc=nproc,
                                                       imlib=imlib)
 
