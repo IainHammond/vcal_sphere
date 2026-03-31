@@ -327,7 +327,7 @@ def postproc_IFS(params_postproc_name='VCAL_params_postproc_IFS.json',
     #mask_IWA_px = int(mask_IWA*fwhm_med)
     mask_IWA = mask_IWA_px/fwhm_med
 
-    if not ref_cube_name:
+    if ref_cube_name is None or ref_cube_name == '':
         label_stg = "RDI"
         ref_cube = open_fits(ref_cube_name, verbose=False)
         if scaling is not None:
