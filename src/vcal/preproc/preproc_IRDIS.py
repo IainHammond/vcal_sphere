@@ -684,9 +684,9 @@ def preproc_IRDIS(params_preproc_name='VCAL_params_preproc_IRDIS.json',
                                         # APPLY THEM TO OBJ CUBES
                                         # interpolate based on cen shifts
                                         y_shifts = float(
-                                            np.interp([mjd], unique_mjd_cen, y_shifts_cen))
+                                            np.interp(mjd, unique_mjd_cen, y_shifts_cen))
                                         x_shifts = float(
-                                            np.interp([mjd], unique_mjd_cen, x_shifts_cen))
+                                            np.interp(mjd, unique_mjd_cen, x_shifts_cen))
                                         cube = cube_shift(
                                             cube, y_shifts, x_shifts, nproc=nproc,
                                             imlib=imlib,
@@ -1076,8 +1076,8 @@ def preproc_IRDIS(params_preproc_name='VCAL_params_preproc_IRDIS.json',
                                         mjd_ori = float(header['MJD-OBS'])
 
                                         for zz in range(n_fr):
-                                            y_shifts[zz] = np.interp([mjd_ori+(dits[fi]*zz/n_fr)/(3600*24)],unique_mjd_cen,y_shifts_cen) - pacy
-                                            x_shifts[zz] = np.interp([mjd_ori+(dits[fi]*zz/n_fr)/(3600*24)],unique_mjd_cen,x_shifts_cen) - pacx
+                                            y_shifts[zz] = np.interp(mjd_ori+(dits[fi]*zz/n_fr)/(3600*24),unique_mjd_cen,y_shifts_cen) - pacy
+                                            x_shifts[zz] = np.interp(mjd_ori+(dits[fi]*zz/n_fr)/(3600*24),unique_mjd_cen,x_shifts_cen) - pacx
                                     else:
                                         ## NEW: "circular" interpolation based on cen shifts
                                         cy, cx = frame_center(cube)
