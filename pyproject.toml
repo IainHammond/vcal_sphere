@@ -3,7 +3,7 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "vcal_sphere"
+name = "vcal"
 version = "2026.03.18"
 description = "A package for VLT/SPHERE data reduction."
 readme = "README.rst"
