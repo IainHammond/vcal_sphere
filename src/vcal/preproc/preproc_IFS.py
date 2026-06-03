@@ -757,6 +757,14 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                                         ax.set_ylabel("Image y-coordinate [px]")
                                         plt.savefig(outpath+"Satspot_coordinates.pdf", bbox_inches="tight")
                                         plt.close("all")
+                                else:  # when use_cen_only=True, we ARE processing CEN cubes
+                                    y_shifts = np.zeros(n_z)
+                                    x_shifts = np.zeros(n_z)
+                                    mjd = float(header["MJD-OBS"])
+                                    all_mjd.append(float(header["MJD-OBS"]))
+                                    for zz in range(n_z):
+                                        y_shifts[zz] = np.interp(mjd, unique_mjd_cen, y_shifts_cen[:, zz])
+                                        x_shifts[zz] = np.interp(mjd, unique_mjd_cen, x_shifts_cen[:, zz])
 
                                 # scaling factors
                                 if fn == 0 and scaling_from_satspots:
