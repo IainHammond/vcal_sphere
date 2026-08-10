@@ -673,7 +673,7 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                                     if true_ncen>2:
                                         header_fin = open_header(inpath+OBJ_IFS_list[-1]+'.fits')
                                         mjd_fin = float(header_fin['MJD-OBS'])
-                                    elif true_ncen>3:
+                                    if true_ncen == 4:
                                         header_mid = open_header(inpath+OBJ_IFS_list[int(nobj/2)]+'.fits')
                                         mjd_mid = float(header_mid['MJD-OBS'])
 
