@@ -688,11 +688,11 @@ def preproc_IFS(params_preproc_name='VCAL_params_preproc_IFS.json',
                                         elif cc == true_ncen-1:
                                             cond = mjd_cen > mjd_fin
                                         elif cc == 1 and true_ncen == 3:
-                                            cond = (mjd_cen > mjd & mjd_cen < mjd_fin)
+                                            cond = (mjd_cen > mjd) & (mjd_cen < mjd_fin)
                                         elif cc == 1 and true_ncen == 4:
-                                            cond = (mjd_cen > mjd & mjd_cen < mjd_mid)
+                                            cond = (mjd_cen > mjd) & (mjd_cen < mjd_mid)
                                         else:
-                                            cond = (mjd_cen < mjd_fin & mjd_cen > mjd_mid)
+                                            cond = (mjd_cen < mjd_fin) & (mjd_cen > mjd_mid)
 
                                         unique_mjd_cen[cc] = np.median(mjd_cen[np.where(cond)])
                                         y_shifts_cen[cc] = np.median(y_shifts_cen_tmp[np.where(cond)][:], axis=0)
